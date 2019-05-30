@@ -6,7 +6,7 @@
 
   class Cave{
     private:
-      Square*** table;
+      std::vector< std::vector<Square> > table;
     public:
     Cave();
     void initTable(int row, int col);

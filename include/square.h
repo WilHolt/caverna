@@ -28,15 +28,24 @@ class Square{
     bool visited;
 
   public:
-    Square(int row_, int col_, std::string tipo);
-    int getLine();
+    Square();
+    Square(int row_, int col_, int tipo);
+    int getRow();
     int getCol();
-    int getType();
+    int getType(){
+      return type;
+    }
     void toString();
     friend std::ostream& operator<< (std::ostream& os, Square &sq){
-      os << sq.type << std::endl;
+      os << sq.getType();
+      return os;
     }
 };
+    // friend void operator=(Square &sq){
+    //   type = sq.type;
+    //   row = sq.row;
+    //   col = sq.col;
+    // }
 
 
 #endif

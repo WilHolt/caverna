@@ -2,11 +2,17 @@
 Cave::Cave(){
     
 }
+
 void Cave::initTable(int row, int col){
- table =  new Square**[row];
         for (int l = 0; l < row; ++l) {
-            table[l] = new Square*[col];
+            std::vector<Square> temp;
+            for(int c = 0; c < col; c++){
+                // Square novo(l,c,0);  
+                //  temp.push_back(novo);
+            };
+            // table.push_back(temp);
         }
+
 }
 void Cave::load(std::string filename){
             std::cout << "okay";
@@ -17,28 +23,54 @@ void Cave::load(std::string filename){
     std::stringstream stream;
     // std::string row_;
     // std::string col_;
-    std::string obj;
+    int obj;
     int row,col;
     in.open (filename, std::ifstream::in);
-    while(!in.eof()){
-        getline(in, line);
-        stream << line;
-        while(stream >>  obj){
-        if(count == 1){
-            std::cout << "okay";
-            stream >> row >> col;
-            initTable(row, col);
-       
-        }else{
-            std::cout <<  obj <<std::endl;
-            for(int i = 0; i < col; i++){
-                Square* novo = new Square(count, i , obj);
-                std::cout << *novo;
-                // table[count][i] = novo;
-            };
-
+    getline(in, line);
+    stream << line;
+    stream >> row >> col;  
+    std::cout << row;
+    std::cout << col; 
+    initTable(row, col);
+    while(count<row+2){
+        if(count==0){
+            // getline(in, line);
+            // stream << line;
+            // initTable(row, col);
         }
+        if(count > 0){            
+        int row_inside= 0;
+        std::vector<Square> temp;        
+        while(stream >>  obj){
+             Square novo(count,row_inside, obj);
+             temp.push_back(novo);
+             row_inside++;
+        }
+        table.push_back(temp);
+        };
         count++;
+    };
+
+        for ( const std::vector<Square> &v : table )
+        {
+           std::cout << std::endl;           
+           for ( auto x : v ) std::cout << x << ' ';
+        }
     }
-}
-}
+
+
+
+    Square Cave::getBegin(){
+        for ( const std::vector<Square> &v : table )
+        {
+           std::cout << std::endl;           
+           for ( auto x : v ) {if(x.getType() == 2) return x};
+        }
+    }
+    Square Cave::getEnd(){
+        for ( const std::vector<Square> &v : table )
+        {
+           std::cout << std::endl;           
+           for ( auto x : v ) {if(x.getType() == 3) return x};
+        }
+    }

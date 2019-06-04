@@ -29,19 +29,19 @@ void Cave::load(std::string filename){
     getline(in, line);
     stream << line;
     stream >> row >> col;  
-    std::cout << row;
-    std::cout << col; 
+    caveRow = row;
+    caveCol = col;
+    // std::cout << row;
+    // std::cout << col; 
     initTable(row, col);
     while(count<row+2){
-        if(count==0){
-            // getline(in, line);
-            // stream << line;
-            // initTable(row, col);
-        }
-        if(count > 0){            
+    std::stringstream stemp;    
+        if(count > 0){      
+            getline(in, line);
+            stemp << line;      
         int row_inside= 0;
         std::vector<Square> temp;        
-        while(stream >>  obj){
+        while(stemp >>  obj){
              Square novo(count,row_inside, obj);
              temp.push_back(novo);
              row_inside++;
@@ -49,6 +49,8 @@ void Cave::load(std::string filename){
         table.push_back(temp);
         };
         count++;
+        stream.str("");        
+        
     };
 
         for ( const std::vector<Square> &v : table )
@@ -64,13 +66,101 @@ void Cave::load(std::string filename){
         for ( const std::vector<Square> &v : table )
         {
            std::cout << std::endl;           
-           for ( auto x : v ) {if(x.getType() == 2) return x};
+           for ( auto x : v ) {if(x.getType() == 2) return x;};
         }
     }
     Square Cave::getEnd(){
         for ( const std::vector<Square> &v : table )
         {
            std::cout << std::endl;           
-           for ( auto x : v ) {if(x.getType() == 3) return x};
+           for ( auto x : v ) {if(x.getType() == 3) return x;};
+        }
+    }
+
+    void Cave::getPath(){
+        // std::stack<Square> PATH;
+        // Square begin = getBegin();              
+        // Square end = getEnd();
+        // PATH.push(begin);
+        // std::vector<Square> neighboors = getNeighboor(PATH.top());
+        // if(neighboors[0].getType() == Path && neighboors[0].getStatus() == false ){
+
+        // }else if(neighboors[1].getType() == Path && neighboors[1].getStatus() == false ){
+            
+        // }else if(neighboors[2].getType() == Path && neighboors[2].getStatus() == false ){
+            
+        // }else if(neighboors[3].getType() == Path && neighboors[3].getStatus() == false ){
+            
+        // }else{
+        //     PATH.pop();
+        // }    
+
+        // if(PATH.top() == end){
+        //     outCave(PATH);
+        // }
+        // // for(int i= 0; i< neighboors.size();i++){
+        // //     if(neighboors[i].getType() == Path && neighboors[i].getStatus() == false ){
+        // //         PATH.push(neighboor);
+        // //         }
+        // // }
+     
+    }
+
+   std::vector<Square> Cave::getNeighboor(Square actual){
+        std::vector<Square> neighboors;
+        for(int side = 0; side < 4; side++){
+                if(side == 0){
+            //left
+        Square neighboor(actual.getRow(), actual.getCol()-1,actual.getType()); 
+        neighboors.push_back(neighboor);
+        }
+        if(side == 1){
+            //right
+        Square neighboor(actual.getRow(), actual.getCol()+1,actual.getType()); 
+        neighboors.push_back(neighboor);
+        
+        }
+        if(side == 2){
+            //up
+        Square neighboor(actual.getRow()-1, actual.getCol(),actual.getType()); 
+        neighboors.push_back(neighboor);
+        
+        }
+        if(side == 3){
+            //down
+        Square neighboor(actual.getRow()+1, actual.getCol(),actual.getType()); 
+        neighboors.push_back(neighboor);
+         
+        }
+        
+        };
+        for(int i = 0; i< 4; i++){
+            std::cout<<neighboors[i]<<'\n';
+        }
+        return neighboors;
+    }
+    
+    void Cave::outCave(std::stack<Square> out){
+        std::cout<<"ACHOU UM CAMINHO";
+    };
+    void Cave::toString(){
+        for ( const std::vector<Square> &v : table )
+        {
+           std::cout << std::endl;           
+           for ( auto x : v ){
+                if(x.getType() == 0){
+                    std::cout << '_';
+                }
+                if(x.getType() == 1){
+                    std::cout << '#';
+                }
+                if(x.getType() == 2){
+                    std::cout << 'I';
+                }
+                if(x.getType() == 3){
+                    std::cout << 'F';
+                }
+           }
+          
         }
     }

@@ -40,12 +40,19 @@ class Square{
       os << sq.getType();
       return os;
     }
+     bool operator== ( Square &nSquare)const {
+      return nSquare.getCol();
+    }
+    void setStatus();
+    bool getStatus();
 };
+
     // friend void operator=(Square &sq){
     //   type = sq.type;
     //   row = sq.row;
     //   col = sq.col;
     // }
+
 
 
 #endif

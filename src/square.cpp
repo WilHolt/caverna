@@ -29,6 +29,12 @@ int Square::getCol(){
 int Square::getRow(){
     return row;
 }
+void Square::setStatus(){
+    visited = true;
+}
+bool Square::getStatus(){
+    return visited;
+}
 void Square::toString(){
     // for (int l = 0; l < row; ++l) {
     //     for(int c = 0; c < col; c++){
@@ -48,7 +54,7 @@ void Square::toString(){
     //         type = End;
         
     //         }
-    //     };
+    //     }; 
     //     std::cout<<std::endl;
     // }
 }

@@ -29,11 +29,14 @@ int Square::getCol(){
 int Square::getRow(){
     return row;
 }
-void Square::setStatus(){
+void Square::setVisited(){
     visited = true;
 }
 bool Square::getStatus(){
     return visited;
+}
+void Square::setBack(Square* back_){
+    back = back_;
 }
 void Square::toString(){
     // for (int l = 0; l < row; ++l) {
@@ -58,3 +61,4 @@ void Square::toString(){
     //     std::cout<<std::endl;
     // }
 }
+

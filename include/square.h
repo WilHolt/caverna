@@ -26,9 +26,10 @@ class Square{
     int row;
     int col;
     bool visited;
+    Square *back;
 
   public:
-    Square();
+
     Square(int row_, int col_, int tipo);
     int getRow();
     int getCol();
@@ -47,8 +48,9 @@ class Square{
       return nSquare.getRow() != row && nSquare.getCol() != col  && nSquare.getType() != type;
     }
     
-    void setStatus();
+    void setVisited();
     bool getStatus();
+    void setBack(Square* back_);  
 };
 
     // friend void operator=(Square &sq){

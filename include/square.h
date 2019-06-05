@@ -37,12 +37,16 @@ class Square{
     }
     void toString();
     friend std::ostream& operator<< (std::ostream& os, Square &sq){
-      os << sq.getType();
+      os << "type: "<< sq.getType() <<"Position: ["<<sq.getCol() <<','<< sq.getRow()<<']';
       return os;
     }
-     bool operator== ( Square &nSquare)const {
-      return nSquare.getCol();
+    bool operator== ( Square &nSquare)const {
+      return nSquare.getRow() == row && nSquare.getCol() == col  && nSquare.getType() == type;
     }
+    bool operator!= ( Square &nSquare)const {
+      return nSquare.getRow() != row && nSquare.getCol() != col  && nSquare.getType() != type;
+    }
+    
     void setStatus();
     bool getStatus();
 };

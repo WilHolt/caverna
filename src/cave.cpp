@@ -78,13 +78,16 @@ void Cave::load(std::string filename){
     }
 
     void Cave::getPath(){
-        // std::stack<Square> PATH;
-        // Square begin = getBegin();              
-        // Square end = getEnd();
-        // PATH.push(begin);
-        // std::vector<Square> neighboors = getNeighboor(PATH.top());
-        // if(neighboors[0].getType() == Path && neighboors[0].getStatus() == false ){
-
+        std::stack<Square> PATH;
+        Square begin = getBegin();              
+        Square end = getEnd();
+        PATH.push(begin);
+        std::vector<Square> neighboors = getNeighboor(PATH.top());
+        while(PATH.top() != end){
+        int randomic = (rand()%5)+1;
+        if(neighboors[randomic].getType() == Path && neighboors[0].getStatus() == false ){
+            PATH.push(neighboors[randomic]);
+        }
         // }else if(neighboors[1].getType() == Path && neighboors[1].getStatus() == false ){
             
         // }else if(neighboors[2].getType() == Path && neighboors[2].getStatus() == false ){
@@ -94,15 +97,18 @@ void Cave::load(std::string filename){
         // }else{
         //     PATH.pop();
         // }    
+        }
 
-        // if(PATH.top() == end){
-        //     outCave(PATH);
+        
+
+        if(PATH.top() == end){
+            // outCave(PATH);
+        }
+        // for(int i= 0; i< neighboors.size();i++){
+        //     if(neighboors[i].getType() == Path && neighboors[i].getStatus() == false ){
+        //         PATH.push(neighboor);
+        //         }
         // }
-        // // for(int i= 0; i< neighboors.size();i++){
-        // //     if(neighboors[i].getType() == Path && neighboors[i].getStatus() == false ){
-        // //         PATH.push(neighboor);
-        // //         }
-        // // }
      
     }
 
@@ -142,6 +148,10 @@ void Cave::load(std::string filename){
     
     void Cave::outCave(std::stack<Square> out){
         std::cout<<"ACHOU UM CAMINHO";
+        for(unsigned int i = 0 ; i< out.size(); i++){
+             std::cout<< "[" << out.top().getRow()<<','<< out.top().getCol()<<']';
+             out.pop();
+        }
     };
     void Cave::toString(){
         for ( const std::vector<Square> &v : table )

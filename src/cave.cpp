@@ -130,28 +130,62 @@ void Cave::load(std::string filename){
         };
         }
         }
-        // if(side == 1){
-        //     //right
+        if(side == 1){
+            //right
         // Square neighboor(actual.getRow(), actual.getCol()+1,actual.getType()); 
         // neighboors.push_back(neighboor);
+                Square* vizinho = new Square(actual->getRow(), actual->getCol()+1,actual->getType());
+        for ( const std::vector<Square *> &v : table ){
+            std::cout << std::endl;           
+            for ( auto x : v ) {
+            if(x->getRow() == actual->getRow()
+               && x->getCol() == (actual->getCol()-1)
+               && x->getType() == actual->getType())
+               {
+                    neighboors.push_back(x);
+               }
+        };
+        }
         
-        // }
-        // if(side == 2){
+        }
+        if(side == 2){
         //     //up
         // Square neighboor(actual.getRow()-1, actual.getCol(),actual.getType()); 
         // neighboors.push_back(neighboor);
+                Square* vizinho = new Square(actual->getRow()-1, actual->getCol(),actual->getType());
+        for ( const std::vector<Square *> &v : table ){
+            for ( auto x : v ) {
+            if(x->getRow() == actual->getRow()
+               && x->getCol() == (actual->getCol()-1)
+               && x->getType() == actual->getType())
+               {
+                    neighboors.push_back(x);
+               }
+        };
+        for(int i = 0; i< neighboors.size(); i++){
+                std::cout<<*neighboors[i];
+            }
+        }
         
-        // }
-        // if(side == 3){
+        }
+        if(side == 3){
         //     //down
         // Square neighboor(actual.getRow()+1, actual.getCol(),actual.getType()); 
         // neighboors.push_back(neighboor);
-         
-        // }
-        
+                 Square* vizinho = new Square(actual->getRow(), actual->getCol()+1,actual->getType());
+        for ( const std::vector<Square *> &v : table ){
+            std::cout << std::endl;           
+            for ( auto x : v ) {
+            if(x->getRow() == actual->getRow()
+               && x->getCol() == (actual->getCol()-1)
+               && x->getType() == actual->getType())
+               {
+                    neighboors.push_back(x);
+               }
+        };
         }
-        for(int i = 0; i< 4; i++){
-            std::cout<<*neighboors[i]<<'\n';
+        }
+        
         }
         return neighboors;
     }

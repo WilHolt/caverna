@@ -7,13 +7,14 @@
 class SondaPilha{
 private:
     Cave *cave;
+    std::stack<Square*> paths;
 
 public:
     SondaPilha(Cave *cave_){
         cave = cave_;
     }
     void clearNeighboor();
-    bool isEmpty(std::stack<Square*> stack);
+    bool isEmpty();
     bool nextPath();
     bool isFinished();
     void getPath();

@@ -42,10 +42,16 @@ class Square{
       return os;
     }
     bool operator== ( Square &nSquare)const {
-      return nSquare.getRow() == row && nSquare.getCol() == col  && nSquare.getType() == type;
+      if((nSquare.getRow() == row ) && (nSquare.getCol() == col) && (nSquare.getType() == type)){
+        return true;
+      }
+      return false;
     }
-    bool operator!= ( Square &nSquare)const {
-      return nSquare.getRow() != row && nSquare.getCol() != col  && nSquare.getType() != type;
+    bool operator != ( Square &nSquare)const {
+       if((nSquare.getRow() != row ) && (nSquare.getCol() != col) && (nSquare.getType() != type)){
+        return true;
+      }
+      return false;
     }
     
     void setVisited();

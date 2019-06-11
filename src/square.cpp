@@ -6,18 +6,18 @@
 
 Square::Square(int row_, int col_, int tipo){
     if(tipo == 0){
-    type = Path;
+    type = 0;
     }
     if(tipo == 1){
-    type = Wall;
+    type = 1;
 
     }
         if(tipo == 2){
-    type = Begin;
+    type = 2;
 
     }
         if(tipo == 3){
-    type = End;
+    type = 3;
 
     }
  row = row_;

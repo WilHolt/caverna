@@ -117,31 +117,23 @@ void Cave::load(std::string filename){
         for(int side = 0; side < 4; side++){
                 if(side == 0){
             //left
-        Square* vizinho = new Square(actual->getRow(), actual->getCol()-1,actual->getType());
-                // std::cout<<*vizinho;
-            if(vizinho == vizinho){
-                // std::cout<<"são iguais porra";
-            }
         for ( const std::vector<Square *> &v : table ){
             for ( auto x : v ) {
-                // std::cout<<*x;
-                
-            if(x == vizinho){
-                std::cout<<"achou";
-                    neighboors.push_back(x);
-               }
-        };
+                if((x->getRow() == actual->getRow()) && (x->getCol() == (actual->getCol()-1)) ){
+                std::cout<<"achou0";
+
+                        neighboors.push_back(x);
+                }
+            };
         }
         }
         if(side == 1){
             //right
-        // Square neighboor(actual.getRow(), actual.getCol()+1,actual.getType()); 
-        // neighboors.push_back(neighboor);
-            Square* vizinho = new Square(actual->getRow(), actual->getCol()+1,actual->getType());
         for ( const std::vector<Square *> &v : table ){
             for ( auto x : v ) {
-            if(x==vizinho)
+            if((x->getRow() == actual->getRow()) && (x -> getCol() == (actual->getCol()+1)))
                {
+                    std::cout<<"achou1";
                     neighboors.push_back(x);
                }
         };
@@ -150,14 +142,11 @@ void Cave::load(std::string filename){
         }
         if(side == 2){
         //     //up
-        // Square neighboor(actual.getRow()-1, actual.getCol(),actual.getType()); 
-        // neighboors.push_back(neighboor);
-                Square* vizinho = new Square(actual->getRow()-1, actual->getCol(),actual->getType());
         for ( const std::vector<Square *> &v : table ){
             for ( auto x : v ) {
-            if(*x==*vizinho)
+            if((x->getRow() == (actual->getRow()-1)) && (x -> getCol() == actual -> getCol()) )
                {
-
+                    std::cout<<"achou2";
                     neighboors.push_back(x);
                }
             };
@@ -166,28 +155,22 @@ void Cave::load(std::string filename){
         }
         if(side == 3){
         //     //down
-        // Square neighboor(actual.getRow()+1, actual.getCol(),actual.getType()); 
-        // neighboors.push_back(neighboor);
-                 Square* vizinho = new Square(actual->getRow(), actual->getCol()+1,actual->getType());
-        for ( const std::vector<Square *> &v : table ){
-                                     
-            for ( auto x : v ) {
-            if(*x==*vizinho)
-               {
-                                   
-                    neighboors.push_back(x);
-               }
-        };
-        }
-        }
-            for(unsigned int i = 0; i< neighboors.size();i++){
-                std::cout<<neighboors[i];
+            for ( const std::vector<Square *> &v : table ){           
+                for ( auto x : v ) {
+                if((x->getRow() == (actual->getRow()+1)) && (x->getCol() == actual->getCol()) )
+                    {
+                            std::cout<<"achou3";      
+                            neighboors.push_back(x);
+                    }
+                };  
             }
-           for(Square* &v: neighboors){
-             std::cout<< *v << ' ';
-             std::cout<< "achou";
-
         }
+       
+        //    for(Square* &v: neighboors){
+        //      std::cout<< *v << ' ';
+        //      std::cout<< "achou";
+
+        // }
         }
 
         return neighboors;

@@ -10,27 +10,34 @@ void SondaPilha::step(){
    }else{
        if(paths.top()->getType()== 3){
         std::cout<<"fim";
+            while(!paths.empty()){
+                paths.pop();
+            }
        }else{
           while(!isEmpty()){
                 std::vector<Square*> neighboors = cave->getNeighboor(paths.top());
-                for(unsigned int  i = 0; i < neighboors.size(); i++){            
-                     if(paths.top()->getType()== 0){
-                         neighboors[i]->setBack(paths.top());  
-                         std::cout<<"back"     ; 
-                     }   
-                }
+
+                // for(unsigned int  i = 0; i < neighboors.size(); i++){            
+                //      if(paths.top()->getType() != 2 && paths.top() -> getStatus() == false){
+                //          std::cout<<"back"; 
+                //      }  
+                // }
                 for(unsigned int  i = 0; i < neighboors.size(); i++){
-                    if(neighboors[i]->getStatus() != true){
+                    if(paths.top()->getStatus() == true){
                     }else{
+                        if(paths.top()->getType() != 2 && paths.top()->getStatus() == false){
+                            neighboors[i]->setBack(paths.top());  
                             paths.push(neighboors[i]);
+                            paths.top()->setVisited();
+                            paths.pop();
+                        }
                     }
                 }
             //   for(unsigned int  i = 0; i < neighboors.size(); i++){            
             //     neighboors[i]->setBack(paths.top());           
-            // }
-            std::cout<<" PILHA:" <<*paths.top();
-            paths.pop();
-          }
+            }
+
+        //   }
        }
    }
 }
@@ -55,6 +62,6 @@ void SondaPilha::step(){
 bool SondaPilha::isEmpty(){
     return paths.empty();
 }
-bool isFinished(){
+bool SondaPilha::isFinished(){
     // if(cave->allVisite() && found();)
 }

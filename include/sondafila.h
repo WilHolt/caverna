@@ -1,16 +1,16 @@
-#ifndef _SONDAFILA_H_
-#define _SONDAFILA_H_
+#ifndef _SONDAPILHA_H_
+#define _SONDAPILHA_H_
 
 #include "cave.h"
 #include "square.h"
 
-class SondaPilha{
+class SondaFila{
 private:
     Cave *cave;
-    std::queue<Square*> paths;
+    std::stack<Square*> paths;
 
 public:
-    SondaPilha(Cave *cave_){
+    SondaFila(Cave *cave_){
         cave = cave_;
     }
     void clearNeighboor();
